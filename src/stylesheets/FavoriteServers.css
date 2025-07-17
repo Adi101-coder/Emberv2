@@ -1,0 +1,58 @@
+.favorite-servers-section {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 2rem 1rem;
+  background: rgba(16, 26, 44, 0.7);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px 0 #00d4ff11;
+}
+.favorite-servers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.7rem;
+  margin-top: 1.5rem;
+}
+.server-card {
+  background: rgba(0, 212, 255, 0.10);
+  border-radius: 1.1rem;
+  box-shadow: 0 2px 16px 0 #00d4ff22;
+  padding: 1.3rem 1rem 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+.server-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 8px 32px 0 #00d4ff44;
+  border: 1.5px solid #00d4ff;
+  background: rgba(0, 212, 255, 0.16);
+}
+.server-badge {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #00d4ff 60%, #4ecdc4 100%);
+  border-radius: 1.2rem;
+  padding: 0.3rem 1.1rem;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 8px #00d4ff33;
+  letter-spacing: 0.01em;
+}
+.server-name {
+  color: #fff;
+  font-size: 1.18rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+.server-desc {
+  color: #b0c4d4;
+  font-size: 0.98rem;
+  text-align: center;
+  opacity: 0.85;
+  line-height: 1.3;
+} 
