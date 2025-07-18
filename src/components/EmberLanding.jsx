@@ -126,7 +126,9 @@ const StreamingModal = ({ isOpen, onClose, onSelect, initialView }) => {
                   🎬
                 </motion.div>
                 <h3 className="ember-modal-title">Choose Your Streaming Experience</h3>
-                <p className="ember-modal-subtitle">Select the perfect streaming option for your entertainment needs</p>
+                {window.innerWidth > 768 && (
+                  <p className="ember-modal-subtitle">Select the perfect streaming option for your entertainment needs</p>
+                )}
               </div>
               <motion.button 
                 className="ember-modal-close" 
@@ -550,7 +552,7 @@ export default function EmberLanding() {
       <header className="ember-header">
         <div className="ember-nav ember-nav-left">HOME</div>
         <div className="ember-nav ember-nav-center">EMBER</div>
-        <div className="ember-nav ember-nav-right">BROWSE</div>
+        <div className="ember-nav ember-nav-right">NO SIGNUP NEEDED</div>
       </header>
 
       {/* Hero Section */}
@@ -627,9 +629,18 @@ export default function EmberLanding() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            onClick={handleLearnMore}
+            onClick={() => {
+              if (!isMobile && showVideo) {
+                const videoEl = document.getElementById('ember-howto-video');
+                if (videoEl) {
+                  videoEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  return;
+                }
+              }
+              handleLearnMore();
+            }}
           >
-            <span className="ember-btn-text">Learn More</span>
+            <span className="ember-btn-text">Watch Tutorial</span>
             <div className="ember-btn-border"></div>
           </motion.button>
         </motion.div>
@@ -655,19 +666,19 @@ export default function EmberLanding() {
               border: '1px solid rgba(0,212,255,0.13)',
               borderRadius: 18,
               boxShadow: '0 4px 32px 0 #00d4ff11',
-              padding: '2rem 1.5rem',
+              padding: '0.6rem 0.7rem',
               maxWidth: 420,
-              margin: 0,
+              margin: showVideo ? '60px 0 0 0' : 0,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: 18,
+              gap: 5,
             }}
           >
-            <span style={{ fontSize: 38, marginBottom: 6, filter: 'drop-shadow(0 0 8px #00d4ff66)' }}>🏏</span>
+            <span style={{ fontSize: 30, marginBottom: 4, filter: 'drop-shadow(0 0 8px #00d4ff66)' }}>🏏</span>
             <div style={{ width: '100%', textAlign: 'center' }}>
-              <div style={{ fontWeight: 700, fontSize: 21, color: '#fff', marginBottom: 4, letterSpacing: 0.2 }}>Watch Cricket Live!</div>
-              <div style={{ fontSize: 15.5, color: '#e0eaf3', marginBottom: 18, fontWeight: 500 }}>
+              <div style={{ fontWeight: 700, fontSize: 17, color: '#fff', marginBottom: 2, letterSpacing: 0.2 }}>Watch Cricket Live!</div>
+              <div style={{ fontSize: 12.5, color: '#e0eaf3', marginBottom: 10, fontWeight: 500 }}>
                 IND vs ENG Test Match streaming now. Click below to watch live.
               </div>
               <a
@@ -708,6 +719,7 @@ export default function EmberLanding() {
               }}
             >
               <video
+                id="ember-howto-video"
                 src={emberVideo}
                 autoPlay
                 loop
@@ -743,7 +755,7 @@ export default function EmberLanding() {
         <div className="ember-footer-center">
           <EmberIcon className="ember-svg-icon ember-svg-footer" />
         </div>
-        <div className="ember-footer-right">NO SIGNUP NEEDED</div>
+        <div className="ember-footer-right">ENJOY FREE STREAMING</div>
       </footer>
 
       {/* Streaming Options Modal */}
