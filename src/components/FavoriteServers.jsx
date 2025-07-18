@@ -3,6 +3,11 @@ import "../stylesheets/FavoriteServers.css";
 
 const servers = [
   {
+    name: "Flixer",
+    badge: "🚀 Top Pick",
+    description: "All-in-one movies, TV, anime, auto-next, and watch parties. Great for a premium streaming experience."
+  },
+  {
     name: "VidCloud",
     badge: "🔥 Fastest",
     description: "Reliable, high-speed streaming with minimal buffering. Great for HD content and binge-watching."
@@ -29,7 +34,7 @@ const servers = [
   }
 ];
 
-export default function FavoriteServers() {
+const FavoriteServers = React.memo(function FavoriteServers() {
   return (
     <section className="favorite-servers-section">
       <h2 className="section-title">My Favorite Servers</h2>
@@ -44,4 +49,6 @@ export default function FavoriteServers() {
       </div>
     </section>
   );
-} 
+});
+
+export default FavoriteServers; 

@@ -1,7 +1,7 @@
 import React from "react";
 import "../stylesheets/DeviceCompatibility.css";
 
-export default function DeviceCompatibility() {
+const DeviceCompatibility = React.memo(function DeviceCompatibility() {
   return (
     <section className="device-compatibility-section">
       <h2 className="section-title">Device Compatibility</h2>
@@ -48,4 +48,5 @@ export default function DeviceCompatibility() {
       <div className="device-illustration-caption">Seamless streaming on desktop, laptop, tablet, phone, and TV</div>
     </section>
   );
-} 
+});
+export default DeviceCompatibility; 

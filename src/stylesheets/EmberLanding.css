@@ -301,18 +301,45 @@
   .ember-modal {
     margin: 1rem;
     max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   
   .ember-modal-header {
-    padding: 1rem 1.5rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 2.2rem;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
   }
   
+  .ember-modal-title-section {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ember-modal-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ember-modal-close {
+    margin-top: 0.5rem;
+    align-self: center;
+  }
+
   .ember-modal-title {
     font-size: 1.3rem;
   }
   
   .ember-modal-content {
-    padding: 1.5rem;
+    padding: 1rem;
+    margin-top: 1.2rem;
   }
   
   .ember-streaming-grid {
@@ -614,6 +641,10 @@
   width: 2.2rem;
   height: 2.2rem;
   opacity: 0.8;
+}
+
+.ember-btn, .ember-streaming-option, .ember-content-sections .server-card, .special-server-item {
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s, color 0.2s, opacity 0.2s;
 }
 
 /* Responsive Design */

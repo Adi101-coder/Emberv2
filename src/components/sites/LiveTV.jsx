@@ -193,7 +193,13 @@ const LiveTV = ({ onBack, onSelectSite }) => {
                 scale: 1.01,
                 boxShadow: "0 8px 25px rgba(0, 212, 255, 0.15)"
               }}
-              onClick={() => onSelectSite(site)}
+              onClick={() => {
+                if (site.url) {
+                  window.open(site.url, '_blank', 'noopener,noreferrer');
+                } else {
+                  onSelectSite(site);
+                }
+              }}
             >
               <div className="site-header">
                 <div className="site-logo-container">

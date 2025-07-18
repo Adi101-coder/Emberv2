@@ -29,7 +29,7 @@ const faqs = [
   }
 ];
 
-export default function FAQSection() {
+const FAQSection = React.memo(function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = idx => {
@@ -54,4 +54,6 @@ export default function FAQSection() {
       </div>
     </section>
   );
-} 
+});
+
+export default FAQSection; 

@@ -3,6 +3,12 @@ import "../stylesheets/SpecialServers.css";
 
 const servers = [
   {
+    icon: "🚀",
+    name: "Flixer",
+    url: "https://flixer.su/",
+    desc: "All-in-one movies, TV, anime, auto-next, and watch parties. Premium streaming experience."
+  },
+  {
     icon: "1️⃣",
     name: "1shows",
     url: "https://www.1shows.ru/",
@@ -22,7 +28,7 @@ const servers = [
   }
 ];
 
-export default function SpecialServers() {
+const SpecialServers = React.memo(function SpecialServers() {
   return (
     <section className="special-servers-section">
       <h2 className="section-title">My Favourite Servers</h2>
@@ -45,4 +51,6 @@ export default function SpecialServers() {
       </ul>
     </section>
   );
-} 
+});
+
+export default SpecialServers; 

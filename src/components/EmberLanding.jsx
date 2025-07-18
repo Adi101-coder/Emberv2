@@ -18,6 +18,7 @@ import LiveTV from "./sites/LiveTV";
 
 // Use logo33.png for the main logo
 import logo33 from "../assets/logo33.png";
+import emberVideo from "../assets/cursorful-video-1752519089937.mp4";
 
 const EmberIcon = ({ className = "" }) => (
   <svg
@@ -365,6 +366,12 @@ export default function EmberLanding() {
   const [showMobileWarning, setShowMobileWarning] = useState(false);
   const genreRef = useRef(null);
   const faqRef = useRef(null);
+  const [showVideo, setShowVideo] = useState(window.innerWidth > 700);
+  useEffect(() => {
+    const handleResize = () => setShowVideo(window.innerWidth > 700);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -441,6 +448,29 @@ export default function EmberLanding() {
     };
     setModalInitialView(genreToView[genre] || 'main');
     setIsModalOpen(true);
+  };
+
+  // Responsive flex row for cricket card and video
+  const isMobile = window.innerWidth <= 700;
+  const cricketVideoRowStyle = {
+    display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
+    justifyContent: 'center',
+    alignItems: isMobile ? 'center' : 'flex-start',
+    gap: '2.5rem',
+    flexWrap: isMobile ? 'wrap' : 'nowrap',
+    margin: '2.5rem 0',
+    width: '100%',
+  };
+
+  const cricketVideoRowMobileStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '2.5rem',
+    margin: '2.5rem 0',
+    width: '100%',
   };
 
   return (
@@ -535,6 +565,8 @@ export default function EmberLanding() {
             src={logo33} 
             alt="Ember Logo" 
             className="ember-img-logo ember-img-logo-blend"
+            width={176}
+            height={176}
             animate={{ 
               rotate: [0, -2, 2, 0],
               scale: [1, 1.02, 1]
@@ -611,55 +643,93 @@ export default function EmberLanding() {
         <Suspense fallback={<div style={{height: 120, textAlign: 'center', color: '#00d4ff'}}>Loading servers...</div>}>
           <SpecialServers />
         </Suspense>
-        {/* Cricket Live Section replaces DeviceCompatibility */}
-        <motion.div
-          className="cricket-live-card-section"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-          style={{
-            background: 'linear-gradient(135deg, rgba(16,26,44,0.92) 0%, rgba(26,42,60,0.85) 100%)',
-            border: '1px solid rgba(0,212,255,0.13)',
-            borderRadius: 18,
-            boxShadow: '0 4px 32px 0 #00d4ff11',
-            padding: '2rem 1.5rem',
-            maxWidth: 420,
-            margin: '0 auto',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 18,
-          }}
-        >
-          <span style={{ fontSize: 38, marginBottom: 6, filter: 'drop-shadow(0 0 8px #00d4ff66)' }}>🏏</span>
-          <div style={{ width: '100%', textAlign: 'center' }}>
-            <div style={{ fontWeight: 700, fontSize: 21, color: '#fff', marginBottom: 4, letterSpacing: 0.2 }}>Watch Cricket Live!</div>
-            <div style={{ fontSize: 15.5, color: '#e0eaf3', marginBottom: 18, fontWeight: 500 }}>
-              IND vs ENG Test Match streaming now. Click below to watch live.
+        {/* Cricket Live Section and Video Side by Side */}
+        <div style={cricketVideoRowStyle}>
+          <motion.div
+            className="cricket-live-card-section"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+            style={{
+              background: 'linear-gradient(135deg, rgba(16,26,44,0.92) 0%, rgba(26,42,60,0.85) 100%)',
+              border: '1px solid rgba(0,212,255,0.13)',
+              borderRadius: 18,
+              boxShadow: '0 4px 32px 0 #00d4ff11',
+              padding: '2rem 1.5rem',
+              maxWidth: 420,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 18,
+            }}
+          >
+            <span style={{ fontSize: 38, marginBottom: 6, filter: 'drop-shadow(0 0 8px #00d4ff66)' }}>🏏</span>
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <div style={{ fontWeight: 700, fontSize: 21, color: '#fff', marginBottom: 4, letterSpacing: 0.2 }}>Watch Cricket Live!</div>
+              <div style={{ fontSize: 15.5, color: '#e0eaf3', marginBottom: 18, fontWeight: 500 }}>
+                IND vs ENG Test Match streaming now. Click below to watch live.
+              </div>
+              <a
+                href="https://drew.ihwqfinalq6k1tree.shop/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ember-btn ember-btn-primary"
+                style={{
+                  display: 'inline-block',
+                  minWidth: 160,
+                  fontSize: 16,
+                  fontWeight: 600,
+                  borderRadius: 8,
+                  marginTop: 2,
+                  textDecoration: 'none',
+                  letterSpacing: 0.03,
+                  boxShadow: '0 2px 12px #00d4ff33',
+                  textAlign: 'center',
+                }}
+              >
+                <span className="ember-btn-text">Watch Now</span>
+                <div className="ember-btn-border"></div>
+              </a>
             </div>
-            <a
-              href="https://drew.ihwqfinalq6k1tree.shop/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ember-btn ember-btn-primary"
+          </motion.div>
+          {showVideo && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
               style={{
-                display: 'inline-block',
-                minWidth: 160,
-                fontSize: 16,
-                fontWeight: 600,
-                borderRadius: 8,
-                marginTop: 2,
-                textDecoration: 'none',
-                letterSpacing: 0.03,
-                boxShadow: '0 2px 12px #00d4ff33',
-                textAlign: 'center',
+                maxWidth: '900px',
+                minWidth: '480px',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
-              <span className="ember-btn-text">Watch Now</span>
-              <div className="ember-btn-border"></div>
-            </a>
-          </div>
-        </motion.div>
+              <video
+                src={emberVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  maxWidth: '100%',
+                  minWidth: '480px',
+                  width: '100%',
+                  aspectRatio: '16/9',
+                  borderRadius: '18px',
+                  boxShadow: '0 4px 32px #00d4ff33',
+                  background: '#101a2c',
+                  outline: 'none',
+                  border: '1px solid #00d4ff22',
+                  margin: 0,
+                  display: 'block',
+                }}
+              />
+            </motion.div>
+          )}
+        </div>
         <Suspense fallback={<div style={{height: 120, textAlign: 'center', color: '#00d4ff'}}>Loading FAQ...</div>}>
           <div ref={faqRef}>
             <FAQSection />

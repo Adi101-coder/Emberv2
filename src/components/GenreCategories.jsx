@@ -1,7 +1,7 @@
 import React from "react";
 import "../stylesheets/GenreCategories.css";
 
-export default function GenreCategories({ onGenreClick = () => {} }) {
+const GenreCategories = React.memo(function GenreCategories({ onGenreClick = () => {} }) {
   const genres = [
     { name: "Movies", icon: "🎬", desc: "Blockbusters, classics, and new releases." },
     { name: "Series", icon: "📺", desc: "Binge-worthy TV shows and originals." },
@@ -33,4 +33,6 @@ export default function GenreCategories({ onGenreClick = () => {} }) {
       </div>
     </section>
   );
-} 
+});
+
+export default GenreCategories; 
