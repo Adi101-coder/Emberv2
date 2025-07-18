@@ -630,7 +630,13 @@ export default function EmberLanding() {
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
             onClick={() => {
-              if (!isMobile && showVideo) {
+              if (isMobile) {
+                if (faqRef.current) {
+                  faqRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                return;
+              }
+              if (showVideo) {
                 const videoEl = document.getElementById('ember-howto-video');
                 if (videoEl) {
                   videoEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -640,7 +646,7 @@ export default function EmberLanding() {
               handleLearnMore();
             }}
           >
-            <span className="ember-btn-text">Watch Tutorial</span>
+            <span className="ember-btn-text">{isMobile ? 'Explore Features' : 'Watch Tutorial'}</span>
             <div className="ember-btn-border"></div>
           </motion.button>
         </motion.div>
