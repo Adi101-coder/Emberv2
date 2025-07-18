@@ -557,9 +557,9 @@ export default function EmberLanding() {
       <main className="ember-main">
         <motion.div
           className="ember-logo-heading-row"
-          initial={{ opacity: 0, y: -60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={isMobile ? false : { opacity: 0, y: -60 }}
+          animate={isMobile ? false : { opacity: 1, y: 0 }}
+          transition={isMobile ? { duration: 0 } : { duration: 0.8, ease: "easeOut" }}
         >
           <motion.img 
             src={logo33} 
@@ -597,9 +597,9 @@ export default function EmberLanding() {
         </motion.div>
         <motion.p
           className="ember-tagline"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          initial={isMobile ? false : { opacity: 0, y: 40 }}
+          animate={isMobile ? false : { opacity: 1, y: 0 }}
+          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.4, ease: "easeOut" }}
         >
           Discover unlimited entertainment with Ember - your gateway to free movies and series streaming. Experience seamless viewing across all your devices with our cutting-edge platform designed for movie enthusiasts who demand quality without compromise.
         </motion.p>
@@ -607,9 +607,9 @@ export default function EmberLanding() {
         {/* Animated Buttons */}
         <motion.div
           className="ember-buttons-container"
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          initial={isMobile ? false : { opacity: 0, y: 60 }}
+          animate={isMobile ? false : { opacity: 1, y: 0 }}
+          transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.8, ease: "easeOut" }}
         >
           <motion.button
             className="ember-btn ember-btn-primary"
@@ -647,9 +647,9 @@ export default function EmberLanding() {
         <div style={cricketVideoRowStyle}>
           <motion.div
             className="cricket-live-card-section"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+            initial={isMobile ? false : { opacity: 0, y: 30 }}
+            animate={isMobile ? false : { opacity: 1, y: 0 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.7, delay: 0.5, ease: 'easeOut' }}
             style={{
               background: 'linear-gradient(135deg, rgba(16,26,44,0.92) 0%, rgba(26,42,60,0.85) 100%)',
               border: '1px solid rgba(0,212,255,0.13)',
